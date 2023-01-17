@@ -6,41 +6,33 @@ public class GildedRose {
     public int quality;
     public int daysRemaining;
 
-    public GildedRose(String name, int quality, int daysRemaining) {
+    public Normal GildedRose(String name, int quality, int daysRemaining) {
         this.name = name;
         this.quality = quality;
         this.daysRemaining = daysRemaining;
+        return new Normal(null);
     }
 
     public void tick() {
 
         if(name.equals("normal")){
-            if(quality > 0)
-                quality -= 1;
-            if(daysRemaining <= 0)
-                quality -= 1;
-            daysRemaining -= 1;
+            Normal normal = new Normal(this);
+            normal.tick();
         }
 
         if(name.equals("Aged Brie")){
-            if(quality < 50 && daysRemaining > 0)
-                quality += 1;
-            if(quality < 49 && daysRemaining <= 0)
-                quality += 2;
-            if(quality == 49 && daysRemaining <= 0)
-                quality += 1;
-            daysRemaining -= 1;
+            Brie brie = new Brie(this);
+            brie.tick(); 
         }
 
         if(name.equals("Backstage passes to a TAFKAL80ETC concert")){
-            if(quality < 50 && daysRemaining > 0){
-                quality += 1;
-                if(daysRemaining < 30) quality += 1;
-                if(daysRemaining <= 5) quality += 1;
-            }
-            if(daysRemaining <= 0)
-                quality = 0;
-            daysRemaining -= 1;
+            Backstage backstage = new Backstage(this);
+            backstage.tick();
+        }
+
+        if(name.equals("Sulfuras, Hand of Ragnaros")){
+            Sulfuras sulfuras = new Sulfuras(this);
+            sulfuras.tick();
         }
         // if(!StringUtils.equals(name, "Aged Brie") && !StringUtils.equals(name, "Backstage passes to a TAFKAL80ETC concert")) {
         //     if(quality > 0) {

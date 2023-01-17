@@ -1,6 +1,7 @@
 public class Normal {
 
     private GildedRose gr;
+    
     public Normal(GildedRose gr) {
         this.gr = gr;
     }
