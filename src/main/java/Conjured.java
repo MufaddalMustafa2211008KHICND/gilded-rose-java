@@ -7,10 +7,15 @@ public class Conjured {
     }
 
     public void tick() {
-        if(gr.quality == 1)
+        if(gr.daysRemaining > 0){
+            if(gr.quality != 1)
+                gr.quality -= 1;
             gr.quality -= 1;
-        else if(gr.quality > 0)
-            gr.quality -= 2;
+        }
+        else{
+            if(gr.quality != 0)
+                gr.quality -= 4;
+        }
         gr.daysRemaining -= 1;
     }
 }
